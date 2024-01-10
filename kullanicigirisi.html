@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Kullanıcı Girişi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-gray-black);
+        background-color: var(--dl-color-gray-white);
+
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
+    />
+    <style>
+      @keyframes fade-in-left {
+        0% {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .loading-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 24px;
+        }      
+
+    </style>
+  </head>
+  <body>
+
+    <div class="overlay" id="overlay">
+      <div class="loading-text">Kaydediliyor...</div>
+  </div>
+
+    <link rel="stylesheet" href="./style.css" />
+    <div>
+      <link href="./kullanicigirisi.css" rel="stylesheet" />
+
+      <div class="kullanicigirisi-container">
+        <div class="kullanicigirisi-header">
+          <div class="kullanicigirisi-container1">
+            <div class="kullanicigirisi-container2">
+              <a href="index.html" class="kullanicigirisi-ana-men button">
+                <span>
+                  <span>Ana Menü</span>
+                  <br />
+                </span>
+              </a>
+            </div>
+            <div class="kullanicigirisi-container3">
+              <a
+                href="kullanicigirisi.html"
+                class="kullanicigirisi-kullanc-girii button"
+              >
+                <span>
+                  <span>Kullanıcı Girişi</span>
+                  <br />
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="kullanicigirisi-container4">
+          <h1>
+            <br />
+            <span>Kullanıcı Giriş Ekranı</span>
+          </h1>
+          <div class="kullanicigirisi-container5"></div>
+          <div class="kullanicigirisi-alerjenleriniz">
+            <span class="kullanicigirisi-alerjenleriniz1">
+              <span>Varsa</span>
+              <span>Alerjenlerinizi Giriniz :&nbsp;</span>
+            </span>
+            <input
+              type="text"
+              placeholder="Alerjenleriniz"
+              class="input kullanicigirisi-textinput"
+            />
+          </div>
+          <div class="kullanicigirisi-container6">
+            <button type="button" class="button" onclick="kaydet()">
+              <span>
+                  <span>Kaydet</span>
+                  <br />
+              </span>
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const previousAlerjenler = localStorage.getItem('alerjenler');
+            if (previousAlerjenler) {
+                const alerjenInput = document.querySelector('.kullanicigirisi-textinput');
+                alerjenInput.value = previousAlerjenler.split(',').join(', ');
+    
+                const alerjenListesi = document.createElement('div');
+                alerjenListesi.innerHTML = `<p>Önceki Alerjenler: ${previousAlerjenler}</p>`;
+                document.body.appendChild(alerjenListesi);
+            }
+
+          const alerjenInput = document.querySelector('.kullanicigirisi-textinput');
+          alerjenInput.addEventListener('keydown', function(event) {
+              if (event.key === 'Enter') {
+                  kaydet();
+              }
+          });
+        });
+    
+        function kaydet() {
+            const alerjenInput = document.querySelector('.kullanicigirisi-textinput');
+            const alerjenler = alerjenInput.value.split(',').map(a => a.trim().toLowerCase());
+            localStorage.setItem('alerjenler', alerjenler);
+
+            const overlay = document.getElementById('overlay');
+            overlay.style.display = 'block';
+
+            setTimeout(() => {
+                overlay.style.opacity = 1;
+            }, 10);
+
+            setTimeout(() => {
+                overlay.style.opacity = 0;
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 200);
+            }, 500);
+        }
+    </script>
+  </body>
+</html>
