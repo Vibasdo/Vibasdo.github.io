@@ -1,83 +1,301 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>İlaç Bilgileri</title>
-  <style>
-    body {
-      font-family: sans-serif;
-    }
+    <title>İçerisinde Ne Var?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
 
-    h1 {
-      font-size: 24px;
-    }
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
 
-    h2 {
-      font-size: 18px;
-    }
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-gray-black);
+        background-color: var(--dl-color-gray-white);
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
+    />
+    <style>
+      @keyframes fade-in-left {
+        0% {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <link rel="stylesheet" href="./style.css" />
+    <div>
+      <link href="./index.css" rel="stylesheet" />
 
-    table {
-      border-collapse: collapse;
-    }
+      <div class="home-container">
+        <div class="home-header">
+          <div class="home-container01">
+            <div class="home-container02">
+              <a href="index.html" class="home-ana-men button">
+                <span>
+                  <span>Ana Menü</span>
+                  <br />
+                </span>
+              </a>
+            </div>
+            <div class="home-container03">
+              <a href="kullanicigirisi.html" class="home-kullanc-girii button">
+                <span>
+                  <span>Kullanıcı Girişi</span>
+                  <br />
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="home-features">
+          <div class="home-container04">
+            <h1 class="home-text06">
+              <br />
+              <span>İçerisinde Ne Var?</span>
+            </h1>
+            <div class="home-container05">
+              <div>
+                <button onclick="startBarcodeScanner()">Kamera ile tarama yapmak için tıklayın</button>
+                <div id="dbrScanner" style="display: none;"></div>
+            
+                <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@9.6.32/dist/dbr.js"></script>
+                <br />
+                <br />
+              </div>
+              <span>
+                <span>Aramak İstediğiniz Ürünü Giriniz.</span>
+                <br />
+                <br />
+              </span>
+              <div class="home-container06">
+                <div class="home-container07">
+                  <div class="home-container08">
+                    <input
+                      type="text"
+                      id="searchInput"
+                      placeholder="Barkod veya Ürün Adı"
+                      class="input"
+                    />
+                  </div>
+                </div>
+                <button type="button" onclick="searchPage()" class="button">
+                  <span>
+                    <span>Ara</span>
+                    <br />
+                  </span>
+                </button>
+              </div>
+              <br />
+              <ul id="autocompleteList"></ul>
+            </div>
+          </div>
+        </div>
+        <div class="home-banner">
+          <div class="home-banner1">
+            <h1 class="home-banner-heading heading2">İçerisinde Ne Var?</h1>
+            <span class="home-banner-sub-heading">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+              volutpat turpis. Mauris luctus rutrum mi ut rhoncus. Integer in
+              dignissim tortor. Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Sed non volutpat turpis. Mauris luctus rutrum mi
+              ut rhoncus. Integer in dignissim tortor. Sed non volutpat turpis.
+              Mauris luctus rutrum mi ut rhoncus. Integer in dignissim ortor.
+            </span>
+          </div>
+        </div>
+        <div class="home-footer">
+          <footer class="home-footer1">
+            <div class="home-container09">
+              <span class="home-text16">
+                <span>by Vibasdo</span>
+                <br />
+                <span>vibasdo@gmail.com</span>
+                <br />
+                <span>QR tarayıcısı Dynamsoft tarafından sağlanmaktadır.</span>
+                <br />
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
 
-    table, th, td {
-      border: 1px solid black;
-      padding: 5px;
-    }
+    <script>
+        var pageMappings = {
+            "404": "404.html",
+            "abc": "404.html",
+            "101": "page.html",
+            "test": "page.html",
+            "çikolota": "1234567890123.html",
+            "bisküvi": "2345678901234.html",
+            "kek": "3456789012345.html",
+            "ülker çikolotalı gofret": "8690504020509.html",
+        };
 
-    th {
-      background-color: #ccc;
-    }
+        var barkodMappings = {
+            "1234567890123": "1234567890123.html",
+            "2345678901234": "2345678901234.html",
+            "3456789012345": "3456789012345.html",
+            "8690504020509": "8690504020509.html",
+        };
 
-    p {
-      margin-bottom: 10px;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>İlaç Bilgileri</h1>
-  </header>
-  <main>
-    <section id="ilac-bilgileri">
-      <h2>X İlacı Bilgileri</h2>
-      <table>
-        <tr>
-          <th>Madde</th>
-          <th>Miktar</th>
-          <th>Birimi</th>
-        </tr>
-        <tr>
-          <td>Asetaminofen</td>
-          <td>500</td>
-          <td>miligram</td>
-        </tr>
-        <tr>
-          <td>Kafein</td>
-          <td>30</td>
-          <td>miligram</td>
-        </tr>
-        <tr>
-          <td>Parasetamol</td>
-          <td>250</td>
-          <td>miligram</td>
-        </tr>
-      </table>
-    </section>
-    <section id="alerjen-uyari">
-      <h2>Alerjen Uyarısı</h2>
-      <p>Bu ilaç, laktoz ve buğday gluteni içerir.</p>
-    </section>
-    <section id="kullanim-sartlari">
-      <h2>Kullanım Şartları</h2>
-      <p>Bu ilaç, yetişkinler ve 12 yaş ve üzeri çocuklar için günde 4 tablete kadar kullanılabilir.</p>
-      <p>Yan etkileri arasında baş ağrısı, mide bulantısı ve kusma görülebilir.</p>
-    </section>
-  </main>
-  <footer>
-    <p>ㅤ</p>
-    <p>by Vibasdo</p>
-    <h5>Reşadiye Borsa İstanbul Fen Lisesi</h5>
-  </footer>
-</body>
+        // Türkçe karakterleri düzgün bir şekilde küçük harfe çevir
+        function turkishToLower(str) {
+            var turkishCharacters = { "İ": "i", "I": "ı", "Ç": "ç", "Ş": "ş", "Ğ": "ğ", "Ü": "ü", "Ö": "ö" };
+
+            return str.replace(/[\u0130\u0049\u00C7\u015E\u011E\u00DC\u00D6]/g, function (char) {
+                return turkishCharacters[char];
+            }).toLowerCase();
+        }
+
+        // Arama fonksiyonu
+        function searchPage() {
+            var inputValue = document.getElementById("searchInput").value.trim();
+
+            // Eğer girilen değer sadece sayı içeriyorsa, direkt olarak o sayının HTML adresine git
+            if (/^\d+$/.test(inputValue)) {
+                window.location.href = inputValue + ".html";
+            } else {
+                // Girilen değeri bir barkod numarası olarak kabul et
+                inputValue = turkishToLower(inputValue);
+
+                // Girilen değeri düzgün bir şekilde küçük harfe çevir
+                inputValue = turkishToLower(inputValue);
+
+                // Girilen değere karşılık gelen sayfayı al
+                var pageUrl = pageMappings[inputValue] || barkodMappings[inputValue];
+
+                // Eğer sayfa bulunamadıysa, uyarı ver
+                if (!pageUrl) {
+                    alert("Girilen değere uygun sayfa bulunamadı!");
+                } else {
+                    // Sayfayı yönlendir
+                    window.location.href = pageUrl;
+                }
+            }
+        }
+
+        // Enter tuşuna basılınca searchPage fonksiyonunu çağır
+        document.getElementById("searchInput").addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                searchPage();
+            }
+        });
+
+        // Otomatik tamamlama için liste oluştur
+        document.getElementById("searchInput").addEventListener("input", function() {
+            var inputValue = document.getElementById("searchInput").value.trim();
+            var autocompleteList = document.getElementById("autocompleteList");
+
+            // Girilen değeri düzgün bir şekilde küçük harfe çevir
+            inputValue = turkishToLower(inputValue);
+
+            // Otomatik tamamlama listesini temizle
+            autocompleteList.innerHTML = "";
+
+            // Eğer input boşsa listeyi gösterme
+            if (inputValue === "") {
+                return;
+            }
+
+            // Girilen değere uygun önerileri ekle
+            for (var key in pageMappings) {
+                var lowerKey = turkishToLower(key);
+                if (lowerKey.startsWith(inputValue)) {
+                    var listItem = document.createElement("li");
+                    listItem.textContent = key;
+                    listItem.addEventListener("click", function() {
+                        document.getElementById("searchInput").value = this.textContent;
+                        searchPage();
+                    });
+                    autocompleteList.appendChild(listItem);
+                }
+            }
+
+            // Girilen değere uygun barkod önerilerini ekle
+            for (var barcode in barkodMappings) {
+                var lowerBarcode = turkishToLower(barcode);
+                if (lowerBarcode.startsWith(inputValue)) {
+                    var listItem = document.createElement("li");
+                    listItem.textContent = barcode;
+                    listItem.addEventListener("click", function() {
+                        document.getElementById("searchInput").value = this.textContent;
+                        searchPage();
+                    });
+                    autocompleteList.appendChild(listItem);
+                }
+            }
+        });
+
+        Dynamsoft.DBR.BarcodeReader.license = 'DLS2eyJoYW5kc2hha2VDb2RlIjoiMTAyNTE1OTE2LVRYbFhaV0pRY205cVgyUmljZyIsIm1haW5TZXJ2ZXJVUkwiOiJodHRwczovL21kbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJvcmdhbml6YXRpb25JRCI6IjEwMjUxNTkxNiIsInN0YW5kYnlTZXJ2ZXJVUkwiOiJodHRwczovL3NkbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJjaGVja0NvZGUiOjcxNDY2MDE0OX0=';
+
+        async function startBarcodeScanner() {
+            try {
+                const scanner = await Dynamsoft.DBR.BarcodeScanner.createInstance();
+                
+                scanner.onFrameRead = results => {
+                    console.log("Barcodes on one frame:");
+                    for (let result of results) {
+                        const format = result.barcodeFormatString;
+                        console.log(format + ": " + result.barcodeText);
+                    }
+                };
+                
+                scanner.onUniqueRead = (txt, result) => {
+                    const barcodeValue = txt.trim();
+                    const htmlPage = `${barcodeValue}.html`;
+                    window.location.href = htmlPage;
+                    console.log("Unique Code Found: ", result);
+                }
+                
+                await scanner.show(document.getElementById('dbrScanner'));
+            } catch (ex) {
+                let errMsg;
+                if (ex.message?.includes("network connection error")) {
+                    errMsg = "Failed to connect to Dynamsoft License Server: network connection error. Check your Internet connection or contact Dynamsoft Support (support@dynamsoft.com) to acquire an offline license.";
+                } else {
+                    errMsg = ex.message || ex;
+                }
+                console.error(errMsg);
+                alert(errMsg);
+            }
+        }
+    </script>
+  </body>
 </html>
