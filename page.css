@@ -190,5 +190,7 @@
     display: flex;
     align-self: flex-start;
     text-align: center;
+    display: none;
+    background-color: transparent;
   }
 }
