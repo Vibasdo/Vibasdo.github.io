@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Ülker Çikolotalı Gofret</title>
+    <title>Çilekli Yoğurt Smoothie</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
 
@@ -87,12 +87,12 @@
         <div class="page-container04">
           <div class="page-container05"><span>ㅤ</span></div>
           <h1>
-            <span>Ülker Çikolotalı Gofret</span>
+            <span>Çilekli Yoğurt Smoothie</span>
             <br />
           </h1>
           <div class="page-container06">
             <span class="page-text10">Barkod Numarası :&nbsp;</span>
-            <span class="page-text11">8690504020509</span>
+            <span class="page-text11">2345678901234</span>
           </div>
           <div class="page-container07">
             <span class="page-text12">Gıda Ürünüdür</span>
@@ -104,12 +104,7 @@
             </h2>
             <div class="page-container09">
               <span class="page-text16">
-                Şeker, buğday unu, bitkisel yağlar(palm, shea), kakao
-                kitlesi(%14), mısır nişastası, kakao tozu, (%5), kakao yağı,
-                peyniraltı suyu tozu(süt), fındık, sade yağ(süt), emülgatör(soya
-                lesitini), yumurta akı tozu, tuz, aroma vericiler,
-                kabartıcılar(amonyum hidrojen karbonat, sodyum hidrojen
-                karbonat).
+                Çilek, yoğurt, bal, chia tohumu, yaban mersini.
               </span>
             </div>
           </div>
@@ -118,9 +113,7 @@
             <h2>Alerjen Uyarıları :</h2>
             <div class="page-container12">
               <span class="page-text19">
-                Gluten, Fındık, Süt ürünleri (Laktoz), Soya ve Yumurta
-                bileşenleri içerir. Eser miktarda sert kabuklu meyveler ve yer
-                fıstığı içerebilir.
+                Süt ürünleri (laktoz) içerir.
               </span>
             </div>
             <span class="page-text20">
@@ -139,7 +132,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             const alerjenUyari = document.querySelector('.page-text20');
             const alerjenListesi = localStorage.getItem('alerjenler');
-            const urunAlerjenleri = ["gluten", "fındık", "laktoz", "soya", "yumurta", "yer fıstığı"];
+            const urunAlerjenleri = ["laktoz"];
     
             if (alerjenListesi) {
                 const alerjenler = alerjenListesi.split(',').map(a => a.trim().toLowerCase());

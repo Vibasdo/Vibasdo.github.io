@@ -61,7 +61,6 @@
     <link rel="stylesheet" href="./style.css" />
     <div>
       <link href="./index.css" rel="stylesheet" />
-
       <div class="home-container">
         <div class="home-header">
           <div class="home-container01">
@@ -93,8 +92,9 @@
               <div>
                 <button onclick="startBarcodeScanner()">Kamera ile tarama yapmak için tıklayın</button>
                 <div id="dbrScanner" style="display: none;"></div>
-            
                 <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@9.6.32/dist/dbr.js"></script>
+                <br />
+                <br />
                 <br />
                 <br />
               </div>
@@ -130,12 +130,7 @@
           <div class="home-banner1">
             <h1 class="home-banner-heading heading2">İçerisinde Ne Var?</h1>
             <span class="home-banner-sub-heading">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
-              volutpat turpis. Mauris luctus rutrum mi ut rhoncus. Integer in
-              dignissim tortor. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Sed non volutpat turpis. Mauris luctus rutrum mi
-              ut rhoncus. Integer in dignissim tortor. Sed non volutpat turpis.
-              Mauris luctus rutrum mi ut rhoncus. Integer in dignissim ortor.
+              Günümüzde bir çok paketlenmiş gıda ürününün içeriğini okumak bazı durumlarda oldukça zor olabiliyor. Gerek küçük boyutta yazılmış metinler, gerek eksik yazılmış bilgiler sebebiyle bir çok tüketici aldığı ürünün içerisindeki maddelerin, oranlarının, değerlerinin ve benzeri ne olduğunu merak etse de okumakta zorlanabiliyor. Veya istediği bilgiye ya eksik erişiyor ya da hiç erişemiyor. Paketlenmiş ürünlerde, paketin üzerinde yeterli bilgilendirmeler ürünün paketine yazılmayabiliyor, üstelik yazı boyutları da küçük bir alana sığması için okumanın oldukça zor olduğu bir boyutta tutuluyor. Ayrıca bazı ürünlerde tüketicinin alerjeni olduğu maddeyi içeren bir ürünü eksik beyan sebebiyle alabildiği de görülmüştür. Bu sorunun önüne geçilebilmek için pakete içeriğin doğru ve eksiksiz beyan edilmesinin dışında, tüketicilerle yapılan araştırmalarda bir uygulama geliştirilmesinin de makul olduğu gözlemlendi. Geliştirilecek uygulamanın erişilebilirliğinin en üst düzeyde olabilmesi için uygulama internet sayfası şeklinde yapıldı. Bu sayede internete erişimi olan ve internet tarayıcısına girebilecek düzeydeki her cihaz ile internet sayfasına erişim sağlanabilmektedir. Uygulama sayesinde tüketiciler içeriğinden şüphelendiği yahut içeriğini, değerlerini net okuyamadığı ürünlerin barkod numarasını, adını bu internet sayfasına yazarak veya barkodu kamera ile okutarak ürünün ilgi sayfasına gidip istediği bilgiye kolaylıkla erişebilmektedir. Bir maddeye alerjeni olan kişiler veya küçük yazı boyutu yüzünden gerekli bilgilere erişemeyen tüketiciler yapılan bu internet sayfası sayesinde bu sorunları aşmıştır.
             </span>
           </div>
         </div>
@@ -157,25 +152,28 @@
     </div>
 
     <script>
+        // Ürün adı ile bağlantılı barkod numaraları. 
         var pageMappings = {
-            "404": "404.html",
-            "abc": "404.html",
-            "101": "page.html",
-            "test": "page.html",
-            "çikolota": "1234567890123.html",
-            "bisküvi": "2345678901234.html",
-            "kek": "3456789012345.html",
+            //"404": "404.html",
+            //"abc": "404.html",
+            //"101": "page.html",
+            //"test": "page.html",
+            "muzlu enerji barı": "1234567890123.html",
+            "çilekli yoğurt smoothie": "2345678901234.html",
+            "avakado humus": "3456789012345.html",
+            "zencefilli yeşil çay": "4567890123456.html",
             "ülker çikolotalı gofret": "8690504020509.html",
         };
 
+        // Autocomplete özelliğinin çalışması için gerekli.
         var barkodMappings = {
             "1234567890123": "1234567890123.html",
             "2345678901234": "2345678901234.html",
             "3456789012345": "3456789012345.html",
+            "4567890123456": "4567890123456.html",
             "8690504020509": "8690504020509.html",
         };
 
-        // Türkçe karakterleri düzgün bir şekilde küçük harfe çevir
         function turkishToLower(str) {
             var turkishCharacters = { "İ": "i", "I": "ı", "Ç": "ç", "Ş": "ş", "Ğ": "ğ", "Ü": "ü", "Ö": "ö" };
 
@@ -184,57 +182,44 @@
             }).toLowerCase();
         }
 
-        // Arama fonksiyonu
         function searchPage() {
             var inputValue = document.getElementById("searchInput").value.trim();
 
-            // Eğer girilen değer sadece sayı içeriyorsa, direkt olarak o sayının HTML adresine git
             if (/^\d+$/.test(inputValue)) {
                 window.location.href = inputValue + ".html";
             } else {
-                // Girilen değeri bir barkod numarası olarak kabul et
                 inputValue = turkishToLower(inputValue);
 
-                // Girilen değeri düzgün bir şekilde küçük harfe çevir
                 inputValue = turkishToLower(inputValue);
 
-                // Girilen değere karşılık gelen sayfayı al
                 var pageUrl = pageMappings[inputValue] || barkodMappings[inputValue];
 
-                // Eğer sayfa bulunamadıysa, uyarı ver
                 if (!pageUrl) {
                     alert("Girilen değere uygun sayfa bulunamadı!");
                 } else {
-                    // Sayfayı yönlendir
                     window.location.href = pageUrl;
                 }
             }
         }
 
-        // Enter tuşuna basılınca searchPage fonksiyonunu çağır
         document.getElementById("searchInput").addEventListener("keyup", function(event) {
             if (event.key === "Enter") {
                 searchPage();
             }
         });
 
-        // Otomatik tamamlama için liste oluştur
         document.getElementById("searchInput").addEventListener("input", function() {
             var inputValue = document.getElementById("searchInput").value.trim();
             var autocompleteList = document.getElementById("autocompleteList");
 
-            // Girilen değeri düzgün bir şekilde küçük harfe çevir
             inputValue = turkishToLower(inputValue);
 
-            // Otomatik tamamlama listesini temizle
             autocompleteList.innerHTML = "";
 
-            // Eğer input boşsa listeyi gösterme
             if (inputValue === "") {
                 return;
             }
 
-            // Girilen değere uygun önerileri ekle
             for (var key in pageMappings) {
                 var lowerKey = turkishToLower(key);
                 if (lowerKey.startsWith(inputValue)) {
@@ -248,7 +233,6 @@
                 }
             }
 
-            // Girilen değere uygun barkod önerilerini ekle
             for (var barcode in barkodMappings) {
                 var lowerBarcode = turkishToLower(barcode);
                 if (lowerBarcode.startsWith(inputValue)) {
@@ -288,7 +272,7 @@
             } catch (ex) {
                 let errMsg;
                 if (ex.message?.includes("network connection error")) {
-                    errMsg = "Failed to connect to Dynamsoft License Server: network connection error. Check your Internet connection or contact Dynamsoft Support (support@dynamsoft.com) to acquire an offline license.";
+                    errMsg = "Dynamsoft Lisans Serverına bağlanılamadı: bağlantı hatası. İnternet bağlantınızı kontrol edin veya Dynamsoft Support (support@dynamsoft.com) ile çevrimdışı lisans için iletişime geçin.";
                 } else {
                     errMsg = ex.message || ex;
                 }

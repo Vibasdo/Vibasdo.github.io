@@ -177,7 +177,18 @@
     width: 100%;
     padding-right: 0px;
   }
+  .page-container08 {
+    height: 250px;
+  }
   .page-container09 {
-    height: 160px;
+    height: 204px;
+  }
+  .page-container11 {
+    position: relative;
+  }
+  .page-text20 {
+    display: flex;
+    align-self: flex-start;
+    text-align: center;
   }
 }

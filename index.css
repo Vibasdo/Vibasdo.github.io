@@ -168,6 +168,7 @@
 }
 .home-text16 {
   color: var(--dl-color-secondary-gray500);
+  text-align: center;
 }
 .home-icon-group {
   display: flex;
